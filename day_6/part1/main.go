@@ -14,9 +14,9 @@ func main() {
 		return
 	}
 
-	grid := make([][]bool, 1000)
+	grid := make([][]int, 1000)
 	for i :=range grid {
-		grid[i] = make([]bool, 1000)
+		grid[i] = make([]int, 1000)
 	}
 
 
@@ -37,7 +37,7 @@ func main() {
 	count := 0
 	for i := range grid {
 		for j := range grid[i] {
-			if grid[i][j] {
+			if grid[i][j] == 1 {
 				count++
 			}
 		}
@@ -45,7 +45,7 @@ func main() {
 	fmt.Println(count)
 }
 
-func execGrid(str string, grid [][]bool) {
+func execGrid(str string, grid [][]int) {
 	parts := strings.Split(str, " ")
 	
 	var action string
@@ -71,11 +71,15 @@ func execGrid(str string, grid [][]bool) {
 		for j := startY; j <= endY; j++ {
 			switch action {
 			case "on":
-				grid[i][j] = true
+				grid[i][j] = 1
 			case "off":
-				grid[i][j] = false
+				grid[i][j] = 0
 			case "toggle":
-				grid[i][j] = !grid[i][j]
+				if grid[i][j] == 0 {
+					grid[i][j] = 1
+				} else if grid[i][j] == 1 {
+					grid[i][j] = 0
+				}
 			}
 		}
 	}
