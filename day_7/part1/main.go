@@ -8,7 +8,6 @@ import (
     "strings"
 )
 
-// Store the signals for wires and instructions
 var wires = make(map[string]uint16)
 var instructions = make(map[string]string)
 
@@ -18,7 +17,6 @@ func Evaluate(wire string) uint16 {
         return uint16(signal)
     }
 
-    // If the wire's signal is already computed, return it
     if signal, exists := wires[wire]; exists {
         return signal
     }
@@ -48,7 +46,6 @@ func Evaluate(wire string) uint16 {
         }
     }
 
-    // Store the computed result in the wires map
     wires[wire] = result
     return result
 }
@@ -68,7 +65,6 @@ func ParseInstructions(lines []string) {
 }
 
 func main() {
-    // Open the file and read instructions
     file, err := os.Open("data.txt")
     if err != nil {
         fmt.Println("Error opening file:", err)
@@ -82,7 +78,6 @@ func main() {
         instructionLines = append(instructionLines, scanner.Text())
     }
 
-    // Parse the instructions into the map
     ParseInstructions(instructionLines)
 
     // Calculate the signal for wire "a"
