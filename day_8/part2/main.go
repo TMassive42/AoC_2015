@@ -31,15 +31,15 @@ func main() {
 }
 
 func newString(str string) int {
-	newStr := `"`
+	newStr := "\""
 
 	for i := 0; i < len(str); i++ {
 		if str[i] == '\\' || str[i] == '"' {
-			newStr += `\`+ string(str[i])
+			newStr += "\\" + string(str[i])
 		} else {
 			newStr += string(str[i])
 		}
 	}
-	newStr += `"`
+	newStr += "\""
 	return len(newStr)
 }
